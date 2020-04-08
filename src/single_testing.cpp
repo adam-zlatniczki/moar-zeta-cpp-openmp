@@ -42,6 +42,8 @@ void get_rnd_independent_indices(unsigned int* nn_x, unsigned int* nn_y, unsigne
 
 void get_p_value(double* local_zeta, char* mask, unsigned int n, unsigned int k, double& p_value, double& avg_zeta, double& var_zeta) {
     unsigned int n_subsample = 0;
+    avg_zeta = 0.0;
+    var_zeta = 0.0;
 
     for (unsigned int i=0; i<n; i++) {
         if (mask[i] == 1) {
@@ -58,8 +60,16 @@ void get_p_value(double* local_zeta, char* mask, unsigned int n, unsigned int k,
     var_zeta = var_zeta / (n_subsample*n_subsample * k);
 
     // calculate variance of underlying normal (the sigma^2 parameter of the half-normal)
-    var_zeta = var_zeta / (1 - 2 / M_PI);
+    var_zeta = var_zeta / (1.0 - 2.0 / M_PI);
 
     // calculate p-value
-    p_value = 1 - erf( (1 - avg_zeta) / sqrt(2 * var_zeta) );
+    if (var_zeta == 0.0) {
+        if (avg_zeta == 1.0) {
+            p_value = 1.0;
+        } else {
+            p_value = 0.0;
+        }
+    } else {
+        p_value = 1.0 - erf( (1 - avg_zeta) / sqrt(2 * var_zeta) );
+    }
 }
