@@ -7,7 +7,7 @@
 #include "single_testing.h"
 
 TEST_CASE( "Generate random sample mask", "[single_testing]" ) {
-    int nn_x[5*2] = {
+    unsigned int nn_x[5*2] = {
         1, 3,
         1, 4,
         1, 0,
@@ -15,7 +15,7 @@ TEST_CASE( "Generate random sample mask", "[single_testing]" ) {
         3, 2
     };
 
-    int nn_y[5*2] = {
+    unsigned int nn_y[5*2] = {
         1, 2,
         1, 4,
         1, 0,
@@ -23,7 +23,7 @@ TEST_CASE( "Generate random sample mask", "[single_testing]" ) {
         3, 2
     };
 
-    int nn_j[5*2] = {
+    unsigned int nn_j[5*2] = {
         1, 3,
         1, 3,
         1, 0,
