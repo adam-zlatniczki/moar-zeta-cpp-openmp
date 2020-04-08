@@ -3,9 +3,9 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/include/**",
+                "${workspaceFolder}/include/*",
                 "${workspaceFolder}/libs/**",
-                "${workspaceFolder}/src/**"
+                "${workspaceFolder}/src/*"
             ],
             "defines": [
                 "_DEBUG",
