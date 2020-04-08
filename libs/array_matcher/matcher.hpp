@@ -1,3 +1,5 @@
+#include <iostream>
+
 // define matcher for arrays given by pointers with known type and array size
 template <class T>
 bool arrays_match(const T* array1, const T* array2, const unsigned int size) {

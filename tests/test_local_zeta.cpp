@@ -2,7 +2,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "matcher.hpp"
-#include <iostream>
 
 #include "local_zeta.h"
 
