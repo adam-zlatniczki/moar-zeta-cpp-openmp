@@ -34,6 +34,7 @@ void hmp_value(const double* x, const double* y, const unsigned int n, double& h
     double* avg_zetas_y = new double[n_tests];
     double* var_zetas_y = new double[n_tests];
 
+    #pragma omp parallel for
     for (unsigned int i=0; i<n_tests; i++) {
         char* mask = new char[n];
         get_rnd_independent_indices(nn_x, nn_y, nn_j, n, k, mask);
