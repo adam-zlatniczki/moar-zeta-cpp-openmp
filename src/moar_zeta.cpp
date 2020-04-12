@@ -4,7 +4,7 @@
 #include "single_testing.h"
 
 
-void hmp_value(const double* x, const double* y, const unsigned int n, double& hmp_x, double& avg_zeta_x, double& hmp_y, double& avg_zeta_y, const unsigned int n_tests=50, unsigned int k=0) {
+void hmp_value(const double* x, const double* y, const unsigned int n, double& hmp_x, double& avg_zeta_x, double& hmp_y, double& avg_zeta_y, const unsigned int n_tests, unsigned int k) {
     // if k is not specified set it
     if (k == 0) {
         k = (unsigned int) ceil(sqrt(n));
