@@ -4,7 +4,7 @@
 #include "single_testing.h"
 
 
-void hmp_value(const double* x, const double* y, const unsigned int n, double& hmp_x, double& avg_zeta_x, double& hmp_y, double& avg_zeta_y, const unsigned int n_tests, unsigned int k) {
+void hmp_value(const double* x, const double* y, const unsigned int d_x, const unsigned int d_y, const unsigned int n, double& hmp_x, double& avg_zeta_x, double& hmp_y, double& avg_zeta_y, const unsigned int n_tests, unsigned int k) {
     // if k is not specified set it
     if (k == 0) {
         k = (unsigned int) ceil(sqrt(n));
@@ -16,7 +16,7 @@ void hmp_value(const double* x, const double* y, const unsigned int n, double& h
     nn_y = new unsigned int[n*k];
     nn_j = new unsigned int[n*k];
 
-    get_all_nn_indices(x, y, n, k, nn_x, nn_y, nn_j);
+    get_all_nn_indices(x, y, d_x, d_y, n, k, nn_x, nn_y, nn_j);
 
     // calculate local zetas
     double *local_zeta_x, *local_zeta_y;

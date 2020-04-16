@@ -47,30 +47,35 @@ void get_nn_indices(const double* data, const unsigned int n, const unsigned int
     }
 }
 
-void get_all_nn_indices(const double* x, const double* y, unsigned int n, unsigned int k, unsigned int* nn_x, unsigned int* nn_y, unsigned int* nn_j) {
+void get_all_nn_indices(const double* x, const double* y,const unsigned int d_x, const unsigned int d_y, unsigned int n, unsigned int k, unsigned int* nn_x, unsigned int* nn_y, unsigned int* nn_j) {
     double* j;
 
     #pragma omp parallel sections
     {
         #pragma omp section
         {
-            get_nn_indices(x, n, 1, k, nn_x);
+            get_nn_indices(x, n, d_x, k, nn_x);
         }
 
         #pragma omp section
         {
-            get_nn_indices(y, n, 1, k, nn_y);
+            get_nn_indices(y, n, d_y, k, nn_y);
         }
 
         #pragma omp section
         {
-            j = new double[n*2];
-            for (int i=0; i<n; i++) {
-                j[2*i] = x[i];
-                j[2*i + 1] = y[i];
+            unsigned int d = d_x + d_y;
+            j = new double[n*d];
+            for (unsigned int i=0; i<n; i++) {
+                for (unsigned int l=0; l<d_x; l++) {
+                    j[i*d + l] = x[i*d_x + l];
+                }
+                for (unsigned int l=0; l<d_y; l++){
+                    j[i*d + d_x + l] = y[i*d_y + l];
+                }
             }
 
-            get_nn_indices(j, n, 2, k, nn_j);
+            get_nn_indices(j, n, d, k, nn_j);
         }
     }
 
