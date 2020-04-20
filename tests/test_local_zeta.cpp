@@ -184,7 +184,7 @@ TEST_CASE( "All nearest neighbor indices are calculated", "[local_zeta]" ) {
     unsigned int* calculated_indices_y = new unsigned int[20*5];
     unsigned int* calculated_indices_j = new unsigned int[20*5];
 
-    get_all_nn_indices(x, y, 20, 5, calculated_indices_x, calculated_indices_y, calculated_indices_j);
+    get_all_nn_indices(x, y, 1, 1, 20, 5, calculated_indices_x, calculated_indices_y, calculated_indices_j);
 
     // test
     REQUIRE( arrays_match<unsigned int>(expected_indices_x, calculated_indices_x, 20) );

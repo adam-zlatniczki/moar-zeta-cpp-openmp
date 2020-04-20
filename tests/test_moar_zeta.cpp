@@ -21,9 +21,9 @@ TEST_CASE( "Test statistic and HMP of multiple testing calculated", "[multiple t
 
     double hmp_x, avg_zeta_x, hmp_y, avg_zeta_y;
 
-    hmp_value(x, y, 20, hmp_x, avg_zeta_x, hmp_y, avg_zeta_y);
+    hmp_value(x, y, 1, 1, 20, hmp_x, avg_zeta_x, hmp_y, avg_zeta_y);
 
-    REQUIRE( hmp_x == Approx(0.55).margin(0.06) );
+    REQUIRE( hmp_x == Approx(0.65).margin(0.06) );
     REQUIRE( avg_zeta_x == Approx(0.95).margin(0.03) );
     REQUIRE( hmp_y == Approx(0.45).margin(0.06) );
     REQUIRE( avg_zeta_y == Approx(0.95).margin(0.03) );
