@@ -1,7 +1,7 @@
 {
 	"catch2TestExplorer.executables": [
 		{
-			"pattern": "tests/test_*"
+			"pattern": "build/tests/test_*"
 		}
 	],
 	"files.associations": {
