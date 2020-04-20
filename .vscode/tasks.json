@@ -6,7 +6,7 @@
             "label": "g++.exe build active file with all sources",
             "command": "C:\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
             "args": [
-                "-I${workspaceFolder}\\include",
+                "-I${workspaceFolder}\\include\\moar_zeta",
                 "-I${workspaceFolder}\\src",
                 "-I${workspaceFolder}\\libs\\alglib",
                 "-I${workspaceFolder}\\libs\\catch2",
