@@ -4,7 +4,7 @@ LIBS_DIR = libs
 SRC_DIR = src
 TESTS_DIR = tests
 INC_DIR = include
-C_FLAGS = -fopenmp -g
+C_FLAGS = -fopenmp -g -std=gnu++11
 SHARED_OBJECT_NAME = moar_zeta_cpp_openmp
 
 ALGLIB_OBJS = ${BUILD_DIR}/${LIBS_DIR}/alglib/alglibinternal.o ${BUILD_DIR}/${LIBS_DIR}/alglib/alglibmisc.o ${BUILD_DIR}/${LIBS_DIR}/alglib/ap.o
