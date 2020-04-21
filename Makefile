@@ -11,6 +11,7 @@ ALGLIB_OBJS = ${BUILD_DIR}/${LIBS_DIR}/alglib/alglibinternal.o ${BUILD_DIR}/${LI
 TEST_FW_FILES = ${LIBS_DIR}/array_matcher/matcher.hpp ${LIBS_DIR}/catch2/catch.hpp
 
 ALL_SRC_OBJS = ${BUILD_DIR}/${SRC_DIR}/local_zeta.o ${BUILD_DIR}/${SRC_DIR}/single_testing.o ${BUILD_DIR}/${SRC_DIR}/moar_zeta.o
+BINDINGS = ${BUILD_DIR}\${SRC_DIR}\bindings.o
 
 ### how to build directory structure
 
@@ -53,6 +54,9 @@ ${BUILD_DIR}/${LIBS_DIR}/catch2/catch.o: ${LIBS_DIR}/catch2/catch.hpp | ${BUILD_
 ${BUILD_DIR}/${SRC_DIR}/moar_zeta.o: ${SRC_DIR}/moar_zeta.cpp ${INC_DIR}/moar_zeta/moar_zeta.h | ${BUILD_DIR}/${SRC_DIR}
 	${CC} ${C_FLAGS} -c -I${INC_DIR} -o $@ $<
 
+${BUILD_DIR}/${SRC_DIR}/bindings.o: ${SRC_DIR}/bindings.cpp ${INC_DIR}/moar_zeta/bindings.h | ${BUILD_DIR}/${SRC_DIR}
+	${CC} ${C_FLAGS} -c -I${INC_DIR} -o $@ $<
+
 ${BUILD_DIR}/${SRC_DIR}/%.o: ${SRC_DIR}%.cpp ${SRC_DIR}%.h | ${BUILD_DIR}/${SRC_DIR}
 	${CC} ${C_FLAGS} -c -I${LIBS_DIR}/alglib -o $@ $<
 
@@ -71,8 +75,8 @@ ${BUILD_DIR}/${TESTS_DIR}/test_moar_zeta: ${BUILD_DIR}/${TESTS_DIR}/test_moar_ze
 
 tests: ${BUILD_DIR}/${TESTS_DIR}/test_local_zeta ${BUILD_DIR}/${TESTS_DIR}/test_single_testing ${BUILD_DIR}/${TESTS_DIR}/test_moar_zeta
 
-shared_object: ${ALGLIB_OBJS} ${TEST_FW_OBJS} ${ALL_SRC_OBJS}
-	${CC} ${C_FLAGS} -O3 -shared -o ${BUILD_DIR}/${SHARED_OBJECT_NAME} ${ALL_SRC_OBJS} ${ALGLIB_OBJS} ${TEST_FW_FILES}
+shared_object: ${ALGLIB_OBJS} ${TEST_FW_OBJS} ${ALL_SRC_OBJS} ${BINDINGS}
+	${CC} ${C_FLAGS} -O3 -shared -o ${BUILD_DIR}/${SHARED_OBJECT_NAME} ${BINDINGS} ${ALL_SRC_OBJS} ${ALGLIB_OBJS}
 
 clean:
 	rm -rf ${BUILD_DIR}
